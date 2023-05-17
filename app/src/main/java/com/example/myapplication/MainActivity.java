@@ -16,6 +16,9 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lihuzi.mixapp.R;
+import com.lihuzi.takenotes.ui.activity.NotesMainActivity;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileInputStream;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
-        startActivity(new Intent(this, com.lihuzi.takenotes.ui.activity.MainActivity.class));
+        startActivity(new Intent(this, NotesMainActivity.class));
         finish();
 //        initData();
 //        if (Build.VERSION.SDK_INT >= 23) {

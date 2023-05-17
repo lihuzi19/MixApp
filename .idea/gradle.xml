@@ -12,6 +12,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/base_ui" />
             <option value="$PROJECT_DIR$/infiniteviewpager" />
             <option value="$PROJECT_DIR$/myfloatview" />
             <option value="$PROJECT_DIR$/tokenotes" />

@@ -13,6 +13,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.lihuzi.mixapp.R;
+
 public class CountDownActivity extends AppCompatActivity {
 
 

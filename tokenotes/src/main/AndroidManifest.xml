@@ -11,6 +11,7 @@
         <activity android:name="com.lihuzi.takenotes.ui.activity.MainActivity" android:exported="false">
         </activity>
         <activity android:name="com.lihuzi.takenotes.ui.activity.RecordActivity" android:exported="false"/>
+        <activity android:name="com.lihuzi.takenotes.ui.activity.NotesMainActivity" android:exported="false"/>
     </application>
 
 </manifest>
