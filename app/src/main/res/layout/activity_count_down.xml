@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/act_count_down_status_tv"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:gravity="right"
+        android:padding="10dp"
+        android:text="未开始"
+        android:textColor="#50666666" />
+
+    <TextView
+        android:id="@+id/act_count_down_time_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="00:00:00:00"
+        android:textSize="50dp" />
+
+</RelativeLayout>
