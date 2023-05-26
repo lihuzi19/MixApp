@@ -28,7 +28,7 @@ public class DateUtils
             formatter = new SimpleDateFormat(format);
             _map.put(key, formatter);
         }
-        return formatter.format(Long.valueOf(dateTime));
+        return formatter.format(dateTime);
     }
 
     public static Date getDate(long dateTime)

@@ -17,8 +17,7 @@ import java.util.Date;
  * Created by cocav on 2017/11/13.
  */
 
-public class CoreDB
-{
+public class CoreDB {
     private static String CORE_MONEY_TABLE_NAME = "core_money";
 
     private static String CORE_MONEY_ID = "order_id";
@@ -39,8 +38,7 @@ public class CoreDB
     private static String[] CONTACT_DATA_COLUMNS;
     private static SQLiteDatabase _db;
 
-    static
-    {
+    static {
         CONTACT_DATA_COLUMNS = new String[6];
         CONTACT_DATA_COLUMNS[0] = CORE_MONEY_ID;
         CONTACT_DATA_COLUMNS[1] = CORE_MONEY_GOODS_NAME;
@@ -50,14 +48,10 @@ public class CoreDB
         CONTACT_DATA_COLUMNS[5] = CORE_MONEY_DATE;
     }
 
-    public static void initAndOpen()
-    {
-        if (_db == null)
-        {
-            synchronized (CoreDB.class)
-            {
-                if (_db == null)
-                {
+    public static void initAndOpen() {
+        if (_db == null) {
+            synchronized (CoreDB.class) {
+                if (_db == null) {
                     _db = TakeNotesApplication.getInstance().openOrCreateDatabase(TakeNotesApplication.getInstance().getFilesDir().getAbsolutePath() + "core._db", Context.MODE_PRIVATE, null);
                     _db.execSQL(SQL_CREATE_CONTACTS_TABLE);
                 }
@@ -65,8 +59,7 @@ public class CoreDB
         }
     }
 
-    public synchronized static void insertNotes(String name, float sum, int type, String desc, long date)
-    {
+    public synchronized static void insertNotes(String name, float sum, int type, String desc, long date) {
         initAndOpen();
         ContentValues values = new ContentValues();
         values.put(CORE_MONEY_GOODS_NAME, name);
@@ -77,22 +70,19 @@ public class CoreDB
         _db.insert(CORE_MONEY_TABLE_NAME, null, values);
     }
 
-    public synchronized static ArrayList<NotesModel> queryPay()
-    {
+    public synchronized static ArrayList<NotesModel> queryPay() {
         initAndOpen();
         ArrayList<NotesModel> result = new ArrayList<>();
         Cursor cursor = _db.query(CORE_MONEY_TABLE_NAME, CONTACT_DATA_COLUMNS, null, null, null, null, CORE_MONEY_DATE + " ASC");
-        if (cursor.moveToFirst())
-        {
-            do
-            {
+        if (cursor.moveToFirst()) {
+            do {
                 NotesModel model = new NotesModel();
-                model._db_id = cursor.getInt(cursor.getColumnIndex(CORE_MONEY_ID));
-                model._name = cursor.getString(cursor.getColumnIndex(CORE_MONEY_GOODS_NAME));
-                model._sum = cursor.getFloat(cursor.getColumnIndex(CORE_MONEY_GOODS_SUM));
-                model._type = cursor.getInt(cursor.getColumnIndex(CORE_MONEY_GOODS_TYPE));
-                model._desc = cursor.getString(cursor.getColumnIndex(CORE_MONEY_GOODS_DESC));
-                model._date = cursor.getLong(cursor.getColumnIndex(CORE_MONEY_DATE));
+                model._db_id = cursor.getInt(cursor.getColumnIndexOrThrow(CORE_MONEY_ID));
+                model._name = cursor.getString(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_NAME));
+                model._sum = cursor.getFloat(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_SUM));
+                model._type = cursor.getInt(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_TYPE));
+                model._desc = cursor.getString(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_DESC));
+                model._date = cursor.getLong(cursor.getColumnIndexOrThrow(CORE_MONEY_DATE));
                 result.add(model);
             }
             while (cursor.moveToNext());
@@ -100,22 +90,19 @@ public class CoreDB
         return result;
     }
 
-    public synchronized static ArrayList<NotesModel> query(long start, long end)
-    {
+    public synchronized static ArrayList<NotesModel> query(long start, long end) {
         initAndOpen();
         ArrayList<NotesModel> result = new ArrayList<>();
         Cursor cursor = _db.query(CORE_MONEY_TABLE_NAME, CONTACT_DATA_COLUMNS, CORE_MONEY_DATE + "<? AND " + CORE_MONEY_DATE + ">?", new String[]{String.valueOf(start), String.valueOf(end)}, null, null, null);
-        if (cursor.moveToFirst())
-        {
-            do
-            {
+        if (cursor.moveToFirst()) {
+            do {
                 NotesModel model = new NotesModel();
-                model._db_id = cursor.getInt(cursor.getColumnIndex(CORE_MONEY_ID));
-                model._name = cursor.getString(cursor.getColumnIndex(CORE_MONEY_GOODS_NAME));
-                model._sum = cursor.getFloat(cursor.getColumnIndex(CORE_MONEY_GOODS_SUM));
-                model._type = cursor.getInt(cursor.getColumnIndex(CORE_MONEY_GOODS_TYPE));
-                model._desc = cursor.getString(cursor.getColumnIndex(CORE_MONEY_GOODS_DESC));
-                model._date = cursor.getLong(cursor.getColumnIndex(CORE_MONEY_DATE));
+                model._db_id = cursor.getInt(cursor.getColumnIndexOrThrow(CORE_MONEY_ID));
+                model._name = cursor.getString(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_NAME));
+                model._sum = cursor.getFloat(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_SUM));
+                model._type = cursor.getInt(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_TYPE));
+                model._desc = cursor.getString(cursor.getColumnIndexOrThrow(CORE_MONEY_GOODS_DESC));
+                model._date = cursor.getLong(cursor.getColumnIndexOrThrow(CORE_MONEY_DATE));
                 result.add(model);
             }
             while (cursor.moveToNext());
@@ -123,8 +110,7 @@ public class CoreDB
         return result;
     }
 
-    public synchronized static ArrayList<NotesModel> queryThisMonth(long now)
-    {
+    public synchronized static ArrayList<NotesModel> queryThisMonth(long now) {
         Date d = DateUtils.getDate(now);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(d);
@@ -135,8 +121,7 @@ public class CoreDB
         return query(startMonth, endMonth);
     }
 
-    public synchronized static void deleteById(int id)
-    {
+    public synchronized static void deleteById(int id) {
         initAndOpen();
         _db.delete(CORE_MONEY_TABLE_NAME, CORE_MONEY_ID + "=?", new String[]{String.valueOf(id)});
     }

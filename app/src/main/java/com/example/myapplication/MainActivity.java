@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.PixelFormat;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.RelativeLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.myapplication.utils.PhoneUtils;
 import com.lihuzi.mixapp.R;
 import com.lihuzi.takenotes.ui.activity.NotesMainActivity;
 
@@ -44,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(new Intent(this, NotesMainActivity.class));
-        finish();
+//        finish();
 //        initData();
 //        if (Build.VERSION.SDK_INT >= 23) {
 //            if (!Settings.canDrawOverlays(this)) {
@@ -137,14 +139,23 @@ public class MainActivity extends AppCompatActivity {
         PackageManager PM = getPackageManager();
 
         for (ActivityManager.RunningAppProcessInfo runningAppProcess : runningAppProcesses) {
-            System.err.println("-----------------------      "+runningAppProcess.processName);
+            System.err.println("-----------------------      " + runningAppProcess.processName);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        initData();
+//        initData();
+    }
+
+    private void callPhone() {
+        boolean call = PhoneUtils.callPhone(this, "10086,0");
+        if (call) {
+            Log.e("lining", "---------------------------call success");
+        } else {
+            Log.e("lining", "---------------------------call fail");
+        }
     }
 
     public static long getTotalMemSize() {
@@ -162,7 +173,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        System.err.println("-----------------------      TotalMemSize "+size);
+        System.err.println("-----------------------      TotalMemSize " + size);
         return size;
     }
 
@@ -191,7 +202,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (java.io.IOException e) {
             e.printStackTrace();
         }
-        System.err.println("-----------------------      AviableMemSize "+size);
+        System.err.println("-----------------------      AviableMemSize " + size);
         return size;
     }
 }
