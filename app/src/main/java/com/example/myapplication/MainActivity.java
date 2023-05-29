@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         startActivity(new Intent(this, NotesMainActivity.class));
-//        finish();
+        finish();
 //        initData();
 //        if (Build.VERSION.SDK_INT >= 23) {
 //            if (!Settings.canDrawOverlays(this)) {
