@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">MixApp</string>
+    <string name="app_content">然后依次介绍这几个UI的功能
+
+CoordinatorLayout 顶层布局 类似relativelayout、linearlayout等，不同的是它可以协调子view之间的交互。产生联动的效果。子view通过app:layout_behavior 指定相应的行为。
+AppBarLayout 是一个垂直布局的 LinearLayout，它主要是为了实现 “Material Design” 风格的标题栏的特性，比如：滚动。可以响应用户的手势操作，但是必须在CoordinatorLayout下使用，否则会有许多功能使用不了。
+AppBarLayout里面的View，是通过app:layout_scrollFlags属性来控制滑动，其中有4种Flag的类型.
+Scroll：向下滚动时,被指定了这个属性的View会被滚出屏幕范围直到完全不可见的位置。
+enterAlways：向上滚动时,这个View会随着滚动手势出现,直到恢复原来的位置。
+enterAlwaysCollapsed： 当视图已经设置minHeight属性又使用此标志时，视图-只能以最小高度进入，只有当滚动视图到达顶部时才扩大到完整高度。
+exitUntilCollapsed： 滚动退出屏幕，最后折叠在顶端。
+CollapsingToolbarLayout 折叠布局 用来协调AppBarLayout来实现滚动隐藏ToolBar的效果。继承自 FrameLayout，它是用来实现 Toolbar 的折叠效果，一般它的直接子 View 是 Toolbar，当然也可以是其它类型的 View。通过设置layout_collapseMode 控制折叠属性 。（官方说CollapsingToolbarLayout主要是配合Toolbar而设计的。但如果我们不需要 也可以不加toolbar。只不过在需要toolbar的时候配合CollapsingToolbarLayout效果更佳。）
+不设置 跟随NestedScrollView的滑动一起滑动,NestedScrollView滑动多少距离他就会跟着走多少距离
+parallax 视差效果 layout_collapseParallaxMultiplier视差因子 0~1之间取值
+
+作者：芒果味的你呀
+链接：https://www.jianshu.com/p/23b8820f1549
+来源：简书
+著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。</string>
 </resources>

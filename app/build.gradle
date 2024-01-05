@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.lihuzi.mixapp'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.example.myapplication"
@@ -18,10 +18,48 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    def keystoreFile = rootProject.file("keystore.properties")
+    def hasKeyStore = false
+    def hasDebugKeyStore = false
+    if (keystoreFile.exists()) {
+        hasKeyStore = true
+        def props = new Properties()
+        props.load(new FileInputStream(keystoreFile))
+        signingConfigs {
+            release {
+                storeFile file(props['KEYSTORE_FILE'])
+                keyAlias props['KEY_ALIAS']
+                storePassword props['KEYSTORE_PWD']
+                keyPassword props['KEY_PWD']
+            }
+
+            def debugKeystore = props['DEBUG_KEYSTORE']
+            if (debugKeystore != null && !debugKeystore.toString().isEmpty()) {
+                hasDebugKeyStore = true
+                debug {
+                    storeFile file(props['DEBUG_KEYSTORE'])
+                    keyAlias props['DEBUG_ALIAS']
+                    storePassword props['DEBUG_KEYSTORE_PWD']
+                    keyPassword props['DEBUG_KEY_PWD']
+                }
+            }
+
+        }
+    }
+
     buildTypes {
+        debug {
+            if (hasDebugKeyStore) {
+                signingConfig signingConfigs.debug
+            }
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            if (hasDebugKeyStore) {
+                signingConfig signingConfigs.debug
+            }
         }
     }
     compileOptions {
@@ -36,11 +74,13 @@ android {
 dependencies {
 
     implementation 'androidx.appcompat:appcompat:1.6.1'
-    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'com.google.android.material:material:1.10.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.2.0'
 
     implementation project(":infiniteviewpager")
     implementation project(":tokenotes")
     implementation project(":base_ui")
+    implementation project(":LHZClassLoader")
 }

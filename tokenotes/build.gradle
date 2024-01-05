@@ -2,6 +2,7 @@ plugins {
     id 'com.android.library'
     id 'kotlin-android'
     id 'kotlin-kapt'
+    id 'maven-publish'
 }
 
 android {
@@ -44,4 +45,20 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
 
     implementation project(":base_ui")
+}
+publishing {
+    publications {
+        clickdebounce(MavenPublication) {
+            groupId = 'com.github.donkingliang'  //groupId ，自行定义，组织名或公司名
+            artifactId = 'GroupedRecyclerViewAdapter' //artifactId，自行定义，项目名或模块名
+            version = '1.3.2' //插件版本号
+            afterEvaluate {
+
+            }
+        }
+    }
+
+    repositories {
+        mavenLocal()
+    }
 }

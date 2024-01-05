@@ -64,5 +64,12 @@
             android:layout_height="wrap_content"
             android:text="查询情况"
             android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/act_coroutine"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="coroutine"
+            android:textSize="20sp" />
     </LinearLayout>
 </layout>

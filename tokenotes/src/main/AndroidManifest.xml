@@ -5,10 +5,21 @@
         android:name="com.lihuzi.takenotes.application.TakeNotesApplication"
         android:allowBackup="true"
         android:supportsRtl="true">
-        <activity android:name="com.lihuzi.takenotes.ui.activity.MainActivity" android:exported="false">
-        </activity>
-        <activity android:name="com.lihuzi.takenotes.ui.activity.RecordActivity" android:exported="false"/>
-        <activity android:name="com.lihuzi.takenotes.ui.activity.NotesMainActivity" android:exported="false"/>
+        <activity
+            android:name="com.lihuzi.takenotes.ui.activity.MainActivity"
+            android:exported="false"/>
+        <activity
+            android:name="com.lihuzi.takenotes.ui.activity.RecordActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.lihuzi.takenotes.ui.activity.NotesMainActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.lihuzi.takenotes.ui.activity.CoroutineTestActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.lihuzi.takenotes.ui.activity.MVVMRecyclerViewActivity"
+            android:exported="false" />
     </application>
 
 </manifest>

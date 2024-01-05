@@ -16,10 +16,14 @@ import android.widget.RelativeLayout;
 
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.myapplication.utils.PhoneUtils;
 import com.lihuzi.mixapp.R;
-import com.lihuzi.takenotes.ui.activity.NotesMainActivity;
+import com.lihuzi.takenotes.ui.activity.MVVMRecyclerViewActivity;
+import com.lihuzi.takenotes.ui.viewholder.MVVMViewModel;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -34,8 +38,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.layout_new_recyclerview);
 
+        RecyclerView rv = findViewById(R.id.recycler_view);
+        rv.setLayoutManager(new LinearLayoutManager(this));
+        MVVMViewModel viewModel = new ViewModelProvider(this).get(MVVMViewModel.class);
+        rv.setAdapter(viewModel.getAdapter());
+        viewModel.getDataFromUnKnow();
 //        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
 //            if (!hasPermission()) {
 //                startActivityForResult(
@@ -45,8 +54,8 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
-        startActivity(new Intent(this, NotesMainActivity.class));
-        finish();
+//        startActivity(new Intent(this, MVVMRecyclerViewActivity.class));
+//        finish();
 //        initData();
 //        if (Build.VERSION.SDK_INT >= 23) {
 //            if (!Settings.canDrawOverlays(this)) {
