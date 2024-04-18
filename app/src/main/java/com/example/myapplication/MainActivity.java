@@ -66,6 +66,7 @@ public class MainActivity extends AppCompatActivity {
 ////                addControllView();
 //            }
 //        }
+        Log.e("TG", "MainActivity onCreaste");
     }
 
     private void addControllView() {
