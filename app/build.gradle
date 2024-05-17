@@ -18,48 +18,48 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    def keystoreFile = rootProject.file("keystore.properties")
-    def hasKeyStore = false
-    def hasDebugKeyStore = false
-    if (keystoreFile.exists()) {
-        hasKeyStore = true
-        def props = new Properties()
-        props.load(new FileInputStream(keystoreFile))
-        signingConfigs {
-            release {
-                storeFile file(props['KEYSTORE_FILE'])
-                keyAlias props['KEY_ALIAS']
-                storePassword props['KEYSTORE_PWD']
-                keyPassword props['KEY_PWD']
-            }
-
-            def debugKeystore = props['DEBUG_KEYSTORE']
-            if (debugKeystore != null && !debugKeystore.toString().isEmpty()) {
-                hasDebugKeyStore = true
-                debug {
-                    storeFile file(props['DEBUG_KEYSTORE'])
-                    keyAlias props['DEBUG_ALIAS']
-                    storePassword props['DEBUG_KEYSTORE_PWD']
-                    keyPassword props['DEBUG_KEY_PWD']
-                }
-            }
-
-        }
-    }
+//    def keystoreFile = rootProject.file("keystore.properties")
+//    def hasKeyStore = false
+//    def hasDebugKeyStore = false
+//    if (keystoreFile.exists()) {
+//        hasKeyStore = true
+//        def props = new Properties()
+//        props.load(new FileInputStream(keystoreFile))
+//        signingConfigs {
+//            release {
+//                storeFile file(props['KEYSTORE_FILE'])
+//                keyAlias props['KEY_ALIAS']
+//                storePassword props['KEYSTORE_PWD']
+//                keyPassword props['KEY_PWD']
+//            }
+//
+//            def debugKeystore = props['DEBUG_KEYSTORE']
+//            if (debugKeystore != null && !debugKeystore.toString().isEmpty()) {
+//                hasDebugKeyStore = true
+//                debug {
+//                    storeFile file(props['DEBUG_KEYSTORE'])
+//                    keyAlias props['DEBUG_ALIAS']
+//                    storePassword props['DEBUG_KEYSTORE_PWD']
+//                    keyPassword props['DEBUG_KEY_PWD']
+//                }
+//            }
+//
+//        }
+//    }
 
     buildTypes {
         debug {
-            if (hasDebugKeyStore) {
-                signingConfig signingConfigs.debug
-            }
+//            if (hasDebugKeyStore) {
+//                signingConfig signingConfigs.debug
+//            }
         }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
 
-            if (hasDebugKeyStore) {
-                signingConfig signingConfigs.debug
-            }
+//            if (hasDebugKeyStore) {
+//                signingConfig signingConfigs.debug
+//            }
         }
     }
     compileOptions {

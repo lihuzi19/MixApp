@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
 //        }
 
 
-//        startActivity(new Intent(this, MVVMRecyclerViewActivity.class));
+        startActivity(new Intent(this, FlyActivity.class));
 //        finish();
 //        initData();
 //        if (Build.VERSION.SDK_INT >= 23) {
